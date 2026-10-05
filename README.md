@@ -2,6 +2,8 @@
 
 **AI Voice Pipeline & TTS Campaign Platform** — backend service for healthcare-style appointment reminders: text-to-speech generation, voice profiles, scheduled campaigns, do-not-call (DNC) enforcement, call tracking, outbound webhooks, and usage metering.
 
+**Latest:** Voice crew (`POST /api/crews/script`) — intent → scriptwriter → compliance, plus Celery worker `voxengine.run_voice_crew`.
+
 Backend-only, production-oriented layout: **no secrets in code**, configuration via environment variables.
 
 ---

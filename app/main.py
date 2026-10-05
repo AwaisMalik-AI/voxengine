@@ -7,7 +7,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 
-from app.api.routes import auth, campaigns, dnc, tts, usage, voices
+from app.api.routes import auth, campaigns, crews, dnc, tts, usage, voices
 from app.core.config import settings
 from app.core.database import init_db
 
@@ -25,7 +25,7 @@ async def lifespan(app: FastAPI):
 
 app = FastAPI(
     title=settings.APP_NAME,
-    description="AI voice pipeline and TTS campaign platform for healthcare appointment reminders.",
+    description="AI voice pipeline, TTS campaigns, and intent→script→compliance voice crews.",
     version="1.0.0",
     lifespan=lifespan,
 )
@@ -46,6 +46,7 @@ app.include_router(tts.router, prefix="/api/tts", tags=["tts"])
 app.include_router(campaigns.router, prefix="/api/campaigns", tags=["campaigns"])
 app.include_router(dnc.router, prefix="/api/dnc", tags=["dnc"])
 app.include_router(usage.router, prefix="/api/usage", tags=["usage"])
+app.include_router(crews.router, prefix="/api/crews", tags=["crews"])
 
 
 @app.get("/health", tags=["health"])

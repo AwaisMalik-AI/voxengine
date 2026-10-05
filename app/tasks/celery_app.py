@@ -8,7 +8,7 @@ celery_app = Celery(
     "voxengine",
     broker=settings.celery_broker,
     backend=settings.celery_backend,
-    include=["app.tasks.tts_tasks"],
+    include=["app.tasks.tts_tasks", "app.tasks.crew_tasks"],
 )
 
 celery_app.conf.update(
@@ -24,6 +24,7 @@ celery_app.conf.update(
         "app.tasks.tts_tasks.generate_tts_task": {"queue": "tts"},
         "app.tasks.tts_tasks.campaign_call_task": {"queue": "calls"},
         "app.tasks.tts_tasks.deliver_webhook_task": {"queue": "webhooks"},
+        "voxengine.run_voice_crew": {"queue": "default"},
     },
     task_default_queue="default",
 )
