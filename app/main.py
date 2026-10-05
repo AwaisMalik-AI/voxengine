@@ -7,7 +7,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 
-from app.api.routes import auth, campaigns, crews, dnc, tts, usage, voices
+from app.api.routes import auth, campaigns, crews, dnc, outcomes, tts, usage, voices
 from app.core.config import settings
 from app.core.database import init_db
 
@@ -47,6 +47,7 @@ app.include_router(campaigns.router, prefix="/api/campaigns", tags=["campaigns"]
 app.include_router(dnc.router, prefix="/api/dnc", tags=["dnc"])
 app.include_router(usage.router, prefix="/api/usage", tags=["usage"])
 app.include_router(crews.router, prefix="/api/crews", tags=["crews"])
+app.include_router(outcomes.router, prefix="/api/outcomes", tags=["outcomes"])
 
 
 @app.get("/health", tags=["health"])
